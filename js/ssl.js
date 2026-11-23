@@ -106,6 +106,8 @@ export function sslLayers(cat, srcId, geometry, codes) {
         // Producing and suspended wells on top of abandoned ones.
         "symbol-sort-key": ["coalesce", ["get", "_rank"], 0],
       },
+      // Abandoned wells (most of them) recede when zoomed out, so the live ones read.
+      paint: { "icon-opacity": ["interpolate", ["linear"], ["zoom"], 6, ["case", ["==", ["get", "_rank"], 1], 0.35, 1], 9, 1] },
     });
   } else if (geometry === "line") {
     // Dash patterns can't vary per feature in one MapLibre layer, so one layer per stroke style.
