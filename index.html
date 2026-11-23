@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.css">
-  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/app.css?v=7">
   <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
 </head>
 <body>
@@ -19,6 +19,7 @@
       <p>The UK and US regulators each draw their offshore data their own way. Claude reads both services and applies the <a href="#about">Shell Standard Legend</a>, so the two maps speak the same language.</p>
     </div>
     <div class="controls">
+      <a class="navlink" href="provenance.html" title="When AI makes maps look finished, how do you show they were checked?">Earned polish →</a>
       <span id="status" class="status">Loading…</span>
       <button id="gear" class="icon" title="Use your own API key" aria-label="Settings">⚙</button>
     </div>
@@ -94,6 +95,6 @@
     </form>
   </dialog>
 
-  <script type="module" src="js/app.js?v=6"></script>
+  <script type="module" src="js/app.js?v=7"></script>
 </body>
 </html>

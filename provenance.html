@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earned polish · One legend</title>
+  <meta name="description" content="AI makes high-quality cartography cheap, so polish no longer proves anyone checked the map. This page shows one answer: AI-classified layers draw as a draft until a person approves the rules.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="css/app.css?v=7">
+  <link rel="stylesheet" href="css/provenance.css?v=7">
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
+</head>
+<body class="prov">
+  <header>
+    <div class="brand">
+      <h1>Earned polish</h1>
+      <p>Good cartography used to be evidence that someone had taken care over a map. With AI it costs seconds, so polish proves nothing. Here, a map has to earn it.</p>
+    </div>
+    <div class="controls">
+      <a class="navlink" href="./">← One legend</a>
+    </div>
+  </header>
+
+  <nav class="toolbar" aria-label="Rendering">
+    <div class="seg" role="radiogroup" aria-label="How to render">
+      <button data-mode="polish" role="radio" aria-checked="false">Polish without provenance</button>
+      <button data-mode="earned" role="radio" aria-checked="true" class="on">Earned polish</button>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Region">
+      <button data-region="north_sea" class="on">UK North Sea</button>
+      <button data-region="gulf">US Gulf</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="maps single">
+      <figure class="panel">
+        <figcaption><b id="map-title">UK North Sea</b><span id="map-pub">North Sea Transition Authority</span></figcaption>
+        <div class="mapbox">
+          <div class="map" id="map"></div>
+          <div class="stamp" id="stamp" aria-hidden="true">DRAFT<small>AI-classified · not reviewed</small></div>
+          <table class="titleblock" id="titleblock"></table>
+        </div>
+      </figure>
+    </section>
+
+    <aside class="side">
+      <section class="card" id="explain">
+        <h2 id="mode-title">Earned polish</h2>
+        <div id="mode-text"></div>
+      </section>
+
+      <section class="card">
+        <h2>Review</h2>
+        <p class="muted small">Approving a layer means you've checked Claude's rules, above all the low-confidence ones, and you're putting your name to them. Approvals stay in this browser.</p>
+        <label class="reviewer">Your name <input id="reviewer" type="text" autocomplete="name" placeholder="e.g. R. Dunfey"></label>
+        <div id="reviews"></div>
+      </section>
+
+      <section class="card">
+        <h2>How the draft style works</h2>
+        <ul class="small plain">
+          <li><b>Symbols</b> stay correct, but faded, in proportion to Claude's confidence, with an orange ring marking them as unreviewed.</li>
+          <li><b>Lines</b> are dashed and thinned; <b>areas</b> are washed out with an orange dashed edge.</li>
+          <li>A <b>DRAFT</b> stamp stays on the map until every layer in view is approved.</li>
+          <li>The <b>title block</b> says which step a person did and which step AI did, the way drawing offices recorded "drawn by, checked by".</li>
+          <li>Click any feature to see why it got its symbol.</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <script type="module" src="js/provenance.js?v=7"></script>
+</body>
+</html>

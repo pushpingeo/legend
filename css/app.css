@@ -133,3 +133,7 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
 .nomap { padding: 24px; color: var(--ink-2); max-width: 420px; }
 .status { max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
 #run-all { margin-bottom: 10px; }
+
+.navlink { color: #fff; font-size: 13px; text-decoration: none; opacity: 0.85; }
+.navlink:hover { opacity: 1; text-decoration: underline; }
+@media (max-width: 700px) { .navlink { font-size: 12px; } }

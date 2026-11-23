@@ -6,6 +6,10 @@ The UK and US regulators publish their offshore wells, pipelines and platforms a
 
 The point: a symbol standard used to need a drawing office to apply it. Once data arrived faster than anyone could code it, the SSL mostly stopped being used. If an AI does the coding step, from whatever fields a service happens to have, the standard becomes usable again, on data nobody prepared for it.
 
+## Earned polish
+
+A second page, [`provenance.html`](https://pushpingeo.github.io/legend/provenance.html), deals with the uncomfortable side effect. Good cartography used to be evidence of care; AI makes it cost seconds. So on this page an AI-classified layer draws as a draft (faded by Claude's confidence, orange rings and dashed edges, a DRAFT stamp) until a person reviews the low-confidence decisions and approves the rules. A title block records which step AI did and which a person did, like the old "drawn by, checked by" box. "Polish without provenance" shows the same map without any of that, for comparison. Approvals are kept in the viewer's browser only.
+
 ## How it works
 
 1. **The SSL as data.** `scripts/build_ssl.py` reads the SSL2012 Esri style that Shell released through IOGP (an ArcGIS Pro `.stylx`, which is a SQLite file of CIM symbol JSON, plus 22 TrueType fonts) and writes `ssl/<green|red>/catalogue.json` and an SVG per symbol, drawn from the font glyphs. About 1,100 symbols in each edition.
@@ -48,6 +52,7 @@ index.html, css/, js/
   js/ssl.js        load the catalogue, draw SSL symbols in MapLibre, describe the SSL to Claude
   js/native.js     ArcGIS renderer -> MapLibre, for the "as published" view
   js/mapping.js    layer profile, the apply_ssl tool and prompt, validation, applying a mapping
+  js/provenance.js the Earned polish page: draft rendering, review and approval, title block
   js/app.js        maps, legend, mapping cards, "apply it to another service"
 ssl/green, ssl/red catalogue.json + svg/ (generated)
 data/              GeoJSON + layers.json with each service's own renderer (generated)
