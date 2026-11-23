@@ -267,7 +267,7 @@ async function remap(id) {
     await drawSSL(layer);
     applyMode();
     renderMappings();
-    if (r.check.errors.length) alert("Some codes still weren't in the SSL after a second try; those features use the default symbol.");
+    if (r.check.errors.length) console.warn("Unresolved after retry:", r.check.errors);
   } catch (e) {
     if (btn) {
       btn.disabled = false;
@@ -410,6 +410,22 @@ async function main() {
   setStatus();
   wire();
   window.__legend = state;
+  if (location.search.includes("export")) {
+    // Maintenance mode: run Claude on every built-in layer, one after another, and show the
+    // results as JSON for saving into mappings/. Used to produce the saved runs.
+    const b = document.createElement("button");
+    b.id = "run-all";
+    b.textContent = "Run Claude on all built-in layers";
+    b.onclick = async () => {
+      b.disabled = true;
+      for (const l of state.layers.filter((x) => x.region !== "custom")) {
+        b.textContent = `Running ${l.meta.id}…`;
+        await remap(l.meta.id);
+      }
+      b.textContent = "Done";
+    };
+    $("#mappings-card").prepend(b);
+  }
   document.body.classList.add("ready");
 }
 
