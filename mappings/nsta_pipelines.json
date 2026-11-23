@@ -1,0 +1,335 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "pipelines",
+  "summary": "Subsea pipelines, umbilicals and risers, coded by status and fluid. Umbilicals go to pipeline other because they are not pipelines or power cables. Buried codes are not applied because the exposed and untrenched flags do not clearly mean buried.",
+  "default_code": "322013",
+  "default_confidence": 0.5,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "UMBILICAL"
+      ]
+     },
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE",
+       "ABANDONED",
+       "REMOVED"
+      ]
+     }
+    ],
+    "code": "322027",
+    "confidence": 0.6,
+    "note": "Umbilical not in use; no umbilical symbol, so pipeline other"
+   },
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "UMBILICAL"
+      ]
+     }
+    ],
+    "code": "322013",
+    "confidence": 0.6,
+    "note": "Umbilical, not a pipeline or cable; pipeline other used"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "PROPOSED"
+      ]
+     }
+    ],
+    "code": "322005",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "GAS"
+      ]
+     }
+    ],
+    "code": "322023",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "OIL"
+      ]
+     }
+    ],
+    "code": "322021",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "CONDENSATE"
+      ]
+     }
+    ],
+    "code": "322022",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "WATER"
+      ]
+     }
+    ],
+    "code": "322024",
+    "confidence": 0.85
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "CHEMICAL"
+      ]
+     }
+    ],
+    "code": "322025",
+    "confidence": 0.85
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "NOT IN USE",
+       "ABANDONED",
+       "REMOVED"
+      ]
+     }
+    ],
+    "code": "322028",
+    "confidence": 0.85,
+    "note": "Not in use, abandoned or removed; generic not-in-use code"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "GAS"
+      ]
+     }
+    ],
+    "code": "322008",
+    "confidence": 0.95
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "OIL"
+      ]
+     }
+    ],
+    "code": "322006",
+    "confidence": 0.95
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "CONDENSATE"
+      ]
+     }
+    ],
+    "code": "322007",
+    "confidence": 0.95
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "WATER"
+      ]
+     }
+    ],
+    "code": "322009",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "SEAWATER"
+      ]
+     }
+    ],
+    "code": "322009",
+    "confidence": 0.8,
+    "note": "Seawater treated as water pipeline"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "CHEMICAL"
+      ]
+     }
+    ],
+    "code": "322011",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "METHANOL"
+      ]
+     }
+    ],
+    "code": "322011",
+    "confidence": 0.8,
+    "note": "Methanol treated as chemical pipeline"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "ACTIVE",
+       "PRECOMMISSIONED"
+      ]
+     },
+     {
+      "field": "FLUID",
+      "in": [
+       "MIXED HYDROCARBONS"
+      ]
+     }
+    ],
+    "code": "322012",
+    "confidence": 0.6,
+    "note": "Mixed hydrocarbons approximated as gas water condensate"
+   }
+  ],
+  "caveats": [
+   "PIPE_NAME has too many distinct values, so it is not used.",
+   "Buried, not-in-use buried and exposed/untrenched codes are not applied: the flags' meaning is not documented here, so burial is not shown.",
+   "Umbilicals are mapped to pipeline other, not to cable codes, because they carry hydraulic and control fluids rather than power or telecom.",
+   "Fluid is blank for some features; those fall to pipeline other."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 1126,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 3617,
+   "thinking_tokens": 1900
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

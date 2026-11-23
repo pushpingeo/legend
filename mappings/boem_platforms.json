@@ -1,0 +1,27 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "platforms",
+  "summary": "Offshore oil and gas platform points in the Gulf of Mexico, with no field saying whether each is a drilling or production platform. All features get the generic platform symbol 344001.",
+  "default_code": "344001",
+  "default_confidence": 0.7,
+  "rules": [],
+  "caveats": [
+   "The layer has no structure type field, so drilling, production and injection platforms cannot be told apart; all get the generic platform symbol.",
+   "Removal Date is empty for every feature, so no platform is shown as removed.",
+   "Installation Date is filled for all features but is not used for symbol choice."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 540,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 606,
+   "thinking_tokens": 285
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

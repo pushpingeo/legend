@@ -1,0 +1,161 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "wells",
+  "summary": "Gulf of Mexico OCS well points with status and type but no field recording hydrocarbon tests or shows. Each status maps to a well symbol with oil and gas set to 0, and drilling and permit statuses map to their own planned or drilling codes.",
+  "default_code": "W000P",
+  "default_confidence": 0.3,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "PA"
+      ]
+     }
+    ],
+    "code": "W000A",
+    "confidence": 0.9,
+    "note": "Permanently abandoned maps to plugged and abandoned, no hydrocarbons recorded"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "DRL"
+      ]
+     }
+    ],
+    "code": "DRILNG",
+    "confidence": 0.95,
+    "note": "Drilling active"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "APD"
+      ]
+     }
+    ],
+    "code": "LOCPRO",
+    "confidence": 0.8,
+    "note": "Application for permit to drill: location proposed"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "AST"
+      ]
+     }
+    ],
+    "code": "LOCPRO",
+    "confidence": 0.45,
+    "note": "Approved sidetrack is planned; closest symbol is location proposed"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "TA"
+      ]
+     }
+    ],
+    "code": "W000X",
+    "confidence": 0.6,
+    "note": "Temporarily abandoned mapped to suspended; closest match"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "DSI"
+      ]
+     }
+    ],
+    "code": "W000X",
+    "confidence": 0.6,
+    "note": "Drilling suspended mapped to suspended well"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "COM"
+      ]
+     }
+    ],
+    "code": "W000P",
+    "confidence": 0.5,
+    "note": "Borehole completed; treated as active well, production not recorded"
+   }
+  ],
+  "composite": {
+   "template": "W{oil}{gas}0{status}",
+   "parts": [
+    {
+     "name": "oil",
+     "field": "TYPE_CODE_",
+     "values": [
+      {
+       "value": "Development",
+       "token": "0",
+       "confidence": 0.5
+      }
+     ],
+     "default_token": "0"
+    },
+    {
+     "name": "gas",
+     "field": "TYPE_CODE_",
+     "values": [
+      {
+       "value": "Development",
+       "token": "0",
+       "confidence": 0.5
+      }
+     ],
+     "default_token": "0"
+    },
+    {
+     "name": "status",
+     "field": "STATUS",
+     "values": [
+      {
+       "value": "PA",
+       "token": "A",
+       "confidence": 0.9
+      }
+     ],
+     "default_token": "P"
+    }
+   ]
+  },
+  "caveats": [
+   "The layer holds no test results or show fields, so oil and gas are set to 0 for every well; no hydrocarbon content is implied.",
+   "COM (Borehole Completed) does not say whether a well produces; it is mapped to an active well symbol with low confidence.",
+   "TA and DSI are mapped to suspended wells, and AST to location proposed, as the nearest available SSL symbols.",
+   "WELL_NAME has too many distinct values to map on and is not used."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 796,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 1665,
+   "thinking_tokens": 605
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

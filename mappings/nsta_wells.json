@@ -1,0 +1,388 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "wells",
+  "summary": "UK offshore wellbore top-holes, one point per well. Symbols are built from the original hydrocarbon flow class (oil and gas results, shows) and the mechanical status, with drilling and injector special cases.",
+  "default_code": "W000A",
+  "default_confidence": 0.3,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "COMPLESTAT",
+      "in": [
+       "Drilling"
+      ]
+     }
+    ],
+    "code": "DRILNG",
+    "confidence": 0.9,
+    "note": "Well currently being drilled"
+   },
+   {
+    "when": [
+     {
+      "field": "OTHERCLASS",
+      "in": [
+       "Drilling"
+      ]
+     }
+    ],
+    "code": "DRILNG",
+    "confidence": 0.7,
+    "note": "Other class says drilling; mechanical status may differ"
+   },
+   {
+    "when": [
+     {
+      "field": "DEVTYPE",
+      "in": [
+       "Injector"
+      ]
+     },
+     {
+      "field": "COMPLESTAT",
+      "in": [
+       "Completed (Operating)"
+      ]
+     }
+    ],
+    "code": "W000I",
+    "confidence": 0.6,
+    "note": "Development injector, operating; no injection fluid type recorded"
+   },
+   {
+    "when": [
+     {
+      "field": "DEVTYPE",
+      "in": [
+       "Injector"
+      ]
+     },
+     {
+      "field": "COMPLESTAT",
+      "in": [
+       "Completed (Shut In)"
+      ]
+     }
+    ],
+    "code": "WI00S",
+    "confidence": 0.6,
+    "note": "Development injector, shut in; no injection fluid type recorded"
+   },
+   {
+    "when": [
+     {
+      "field": "DEVTYPE",
+      "in": [
+       "Injector"
+      ]
+     },
+     {
+      "field": "COMPLESTAT",
+      "in": [
+       "Abandoned Phase 1",
+       "Abandoned Phase 2",
+       "Abandoned Phase 3",
+       "Plugged"
+      ]
+     }
+    ],
+    "code": "WI00A",
+    "confidence": 0.6,
+    "note": "Development injector, abandoned or plugged"
+   }
+  ],
+  "composite": {
+   "template": "W{oil}{gas}0{status}",
+   "parts": [
+    {
+     "name": "oil",
+     "field": "FLOWCLASS",
+     "default_token": "0",
+     "values": [
+      {
+       "value": "Oil Well",
+       "token": "3",
+       "confidence": 0.8,
+       "note": "Original flow class; not current production"
+      },
+      {
+       "value": "Gas Well",
+       "token": "0",
+       "confidence": 0.8
+      },
+      {
+       "value": "Dry Hole",
+       "token": "0",
+       "confidence": 0.9
+      },
+      {
+       "value": "Oil Show",
+       "token": "1",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas and Condensate Well",
+       "token": "0",
+       "confidence": 0.7,
+       "note": "Condensate treated as not oil"
+      },
+      {
+       "value": "Unknown",
+       "token": "0",
+       "confidence": 0.5
+      },
+      {
+       "value": "Gas and Oil Well",
+       "token": "3",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas Show",
+       "token": "0",
+       "confidence": 0.8
+      },
+      {
+       "value": "Oil and Gas Shows",
+       "token": "1",
+       "confidence": 0.8
+      },
+      {
+       "value": "Hydrocarbon Indications",
+       "token": "1",
+       "confidence": 0.6,
+       "note": "Indications only; treated as show"
+      },
+      {
+       "value": "Oil Well with Gas Show",
+       "token": "3",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas and Condensate Show",
+       "token": "0",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Gas Shows",
+       "token": "0",
+       "confidence": 0.7
+      },
+      {
+       "value": "Gas, Oil and Condensate Well",
+       "token": "3",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Oil Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Oil & Gas Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil and Condensate Well",
+       "token": "3",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil and Condensate Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil Well with Condensate Shows",
+       "token": "3",
+       "confidence": 0.6
+      },
+      {
+       "value": "Gas,Oil and Condensate Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Gas Well with Oil Show",
+       "token": "0",
+       "confidence": 0.7
+      }
+     ]
+    },
+    {
+     "name": "gas",
+     "field": "FLOWCLASS",
+     "default_token": "0",
+     "values": [
+      {
+       "value": "Oil Well",
+       "token": "0",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas Well",
+       "token": "3",
+       "confidence": 0.8,
+       "note": "Original flow class; not current production"
+      },
+      {
+       "value": "Dry Hole",
+       "token": "0",
+       "confidence": 0.9
+      },
+      {
+       "value": "Oil Show",
+       "token": "0",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas and Condensate Well",
+       "token": "3",
+       "confidence": 0.7,
+       "note": "Condensate treated as gas"
+      },
+      {
+       "value": "Unknown",
+       "token": "0",
+       "confidence": 0.5
+      },
+      {
+       "value": "Gas and Oil Well",
+       "token": "3",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas Show",
+       "token": "1",
+       "confidence": 0.8
+      },
+      {
+       "value": "Oil and Gas Shows",
+       "token": "1",
+       "confidence": 0.8
+      },
+      {
+       "value": "Hydrocarbon Indications",
+       "token": "1",
+       "confidence": 0.6,
+       "note": "Indications only; treated as show"
+      },
+      {
+       "value": "Oil Well with Gas Show",
+       "token": "1",
+       "confidence": 0.8
+      },
+      {
+       "value": "Gas and Condensate Show",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Gas Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Gas, Oil and Condensate Well",
+       "token": "3",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Oil Shows",
+       "token": "0",
+       "confidence": 0.7
+      },
+      {
+       "value": "Condensate Well with Oil & Gas Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil and Condensate Well",
+       "token": "0",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil and Condensate Shows",
+       "token": "0",
+       "confidence": 0.7
+      },
+      {
+       "value": "Oil Well with Condensate Shows",
+       "token": "0",
+       "confidence": 0.6
+      },
+      {
+       "value": "Gas,Oil and Condensate Shows",
+       "token": "1",
+       "confidence": 0.7
+      },
+      {
+       "value": "Gas Well with Oil Show",
+       "token": "3",
+       "confidence": 0.7
+      }
+     ]
+    },
+    {
+     "name": "status",
+     "field": "COMPLESTAT",
+     "default_token": "A",
+     "values": [
+      {
+       "value": "Completed (Operating)",
+       "token": "P",
+       "confidence": 0.9
+      },
+      {
+       "value": "Completed (Shut In)",
+       "token": "S",
+       "confidence": 0.9
+      },
+      {
+       "value": "Abandoned Phase 1",
+       "token": "A",
+       "confidence": 0.9
+      },
+      {
+       "value": "Abandoned Phase 2",
+       "token": "A",
+       "confidence": 0.9
+      },
+      {
+       "value": "Abandoned Phase 3",
+       "token": "A",
+       "confidence": 0.9
+      },
+      {
+       "value": "Plugged",
+       "token": "A",
+       "confidence": 0.9
+      }
+     ]
+    }
+   ]
+  },
+  "caveats": [
+   "Hydrocarbon shows come from the original flow class at drilling time, not current production; they are not a live test record.",
+   "About 1,662 wells have no flow class; these fall to the no-hydrocarbon code (0) although results may simply be unknown.",
+   "Condensate is folded into gas (or treated as no oil) because the SSL wells grammar has no condensate token.",
+   "Injector codes only cover operating, shut-in and abandoned development injectors; the injection fluid type is not recorded.",
+   "Status uses the mechanical status field; the operational status (Suspended) is not used, so suspended wells are not shown with the X codes."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 1701,
+   "cache_creation_input_tokens": 6796,
+   "cache_read_input_tokens": 0,
+   "output_tokens": 4693,
+   "thinking_tokens": 2196
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

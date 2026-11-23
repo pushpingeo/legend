@@ -1,0 +1,336 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "pipelines",
+  "summary": "BOEM offshore Gulf pipelines, classified by product code and status code: active lines get product-specific pipeline codes, abandoned or out-of-service lines get the not-in-use codes, and umbilicals get the cable code. Proposed lines get the proposed code.",
+  "default_code": "322013",
+  "default_confidence": 0.3,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "PROP"
+      ]
+     }
+    ],
+    "code": "322005",
+    "confidence": 0.85,
+    "note": "Proposed line"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "UMB",
+       "UBEH",
+       "UMBH",
+       "UMBE",
+       "UMBC",
+       "CBLC",
+       "CBLP"
+      ]
+     }
+    ],
+    "code": "322001",
+    "confidence": 0.5,
+    "note": "Umbilical or control line; cable code is best fit"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "OIL",
+       "BLKO",
+       "OILH"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322006",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "OIL",
+       "BLKO",
+       "OILH"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322021",
+    "confidence": 0.85,
+    "note": "Abandoned or out of service oil line"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "GAS",
+       "BLKG",
+       "GASH",
+       "CSNG",
+       "LIFT"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322008",
+    "confidence": 0.85,
+    "note": "Gas lift and casinghead gas treated as gas"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "GAS",
+       "BLKG",
+       "GASH",
+       "CSNG",
+       "LIFT"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322023",
+    "confidence": 0.8,
+    "note": "Abandoned or out of service gas line"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "H2O"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322009",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "H2O"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322024",
+    "confidence": 0.85
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "CHEM",
+       "ACID",
+       "METH"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322011",
+    "confidence": 0.8,
+    "note": "Chemical or methanol line"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "CHEM",
+       "ACID",
+       "METH"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322025",
+    "confidence": 0.8,
+    "note": "Chemical line not in use"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "COND"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322007",
+    "confidence": 0.9
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "COND"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322022",
+    "confidence": 0.85
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "G/C",
+       "G/CH"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322012",
+    "confidence": 0.75,
+    "note": "Gas and condensate mix"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ABN",
+       "OUT",
+       "PABN"
+      ]
+     }
+    ],
+    "code": "322028",
+    "confidence": 0.75,
+    "note": "Not in use; product unclear or mixed"
+   },
+   {
+    "when": [
+     {
+      "field": "PROD_CODE",
+      "in": [
+       "SERV",
+       "SPLY",
+       "AIR",
+       "TEST",
+       "FLG",
+       "SULF",
+       "TOW",
+       "PWTR",
+       "SPRE"
+      ]
+     },
+     {
+      "field": "STATUS_CODE",
+      "in": [
+       "ACT"
+      ]
+     }
+    ],
+    "code": "322013",
+    "confidence": 0.4,
+    "note": "Service or other line"
+   }
+  ],
+  "caveats": [
+   "Status meanings are inferred: ABN, OUT and PABN are treated as not in use; ACT as active; PROP as proposed.",
+   "PREM, A/C and COMB status values are unclear and fall to the default 'pipeline other' code.",
+   "Mixed products G/O and O/W have no dedicated code and fall to pipeline other.",
+   "Umbilicals and control lines are mapped to the cable code, which is a best fit.",
+   "Layer has no buried-line field, so no buried codes are used.",
+   "Segment number, pipe size and company are not used for mapping."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 1308,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 4984,
+   "thinking_tokens": 3270
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

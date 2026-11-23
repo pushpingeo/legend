@@ -1,0 +1,84 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "platforms",
+  "summary": "Point layer of UKCS offshore surface infrastructure (platforms, buoys, terminals, FPSOs). Each point is mapped by its INF_TYPE to the closest offshore structure symbol; status is not shown.",
+  "default_code": "344001",
+  "default_confidence": 0.2,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "PLATFORM"
+      ]
+     }
+    ],
+    "code": "344001",
+    "confidence": 0.8,
+    "note": "Generic platform symbol; platform function not recorded"
+   },
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "FPSO",
+       "FSO",
+       "SBM",
+       "TERMINAL"
+      ]
+     }
+    ],
+    "code": "34404",
+    "confidence": 0.7,
+    "note": "Offshore loading terminal closest match for floating storage/loading"
+   },
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "BUOY"
+      ]
+     }
+    ],
+    "code": "34409",
+    "confidence": 0.6,
+    "note": "Buoy; lights not recorded, assumed without light"
+   },
+   {
+    "when": [
+     {
+      "field": "INF_TYPE",
+      "in": [
+       "MONITOR BUOY"
+      ]
+     }
+    ],
+    "code": "34409",
+    "confidence": 0.4,
+    "note": "Monitor buoy; assumed buoy without light"
+   }
+  ],
+  "caveats": [
+   "STATUS (active, not in use, abandoned, removed) has no matching SSL point symbol; it is not shown.",
+   "Platform function (production, drilling, injection) is not recorded, so generic platform symbol is used.",
+   "FLARE STACK and OTHER (SURFACE) have no matching symbol; they get the generic platform default at low confidence.",
+   "NAME has too many distinct values to map on."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 1286,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 1415,
+   "thinking_tokens": 752
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}

@@ -1,0 +1,188 @@
+{
+ "model": "claude-haiku-5-5",
+ "created": "2026-11-23",
+ "mapping": {
+  "theme": "fields",
+  "summary": "Offshore UK hydrocarbon field outlines, classed by FIELDTYPE (oil, gas, condensate) and STATUS. Producing and suspended fields get the base field symbol, ceased or post-cessation fields get the post-production symbol, and fields with approved development plans get the prospective symbol.",
+  "default_code": "2401",
+  "default_confidence": 0.3,
+  "rules": [
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "CONSTRUCTION-FDP APPROV"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "OIL"
+      ]
+     }
+    ],
+    "code": "2407",
+    "confidence": 0.8,
+    "note": "Approved development plan, not yet producing: prospective oil field"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "CONSTRUCTION-FDP APPROV"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "GAS"
+      ]
+     }
+    ],
+    "code": "2408",
+    "confidence": 0.8,
+    "note": "Approved development plan, not yet producing: prospective gas field"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "CONSTRUCTION-FDP APPROV"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "COND"
+      ]
+     }
+    ],
+    "code": "2409",
+    "confidence": 0.7,
+    "note": "Approved development plan: prospective wet gas/condensate field"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "PRODUCTION CEASED",
+       "PRODUCTION CEASED - VENT CONSENT NEEDED",
+       "POST-COP"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "OIL"
+      ]
+     }
+    ],
+    "code": "2410",
+    "confidence": 0.85,
+    "note": "Production ceased: oil field, post production"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "PRODUCTION CEASED",
+       "PRODUCTION CEASED - VENT CONSENT NEEDED",
+       "POST-COP"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "GAS"
+      ]
+     }
+    ],
+    "code": "2411",
+    "confidence": 0.85,
+    "note": "Production ceased: gas field, post production"
+   },
+   {
+    "when": [
+     {
+      "field": "STATUS",
+      "in": [
+       "PRODUCTION CEASED",
+       "PRODUCTION CEASED - VENT CONSENT NEEDED",
+       "POST-COP"
+      ]
+     },
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "COND"
+      ]
+     }
+    ],
+    "code": "2411",
+    "confidence": 0.45,
+    "note": "Condensate field ceased; no condensate post-production symbol, gas used"
+   },
+   {
+    "when": [
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "OIL"
+      ]
+     }
+    ],
+    "code": "2402",
+    "confidence": 0.9,
+    "note": "Producing or suspended oil field"
+   },
+   {
+    "when": [
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "GAS"
+      ]
+     }
+    ],
+    "code": "2403",
+    "confidence": 0.9,
+    "note": "Producing or suspended gas field"
+   },
+   {
+    "when": [
+     {
+      "field": "FIELDTYPE",
+      "in": [
+       "COND"
+      ]
+     }
+    ],
+    "code": "2404",
+    "confidence": 0.85,
+    "note": "Wet gas / gas condensate field"
+   }
+  ],
+  "caveats": [
+   "The layer records hydrocarbon type and status but no test results or shows, so no finer distinctions are made.",
+   "Operator, field name and other attributes are not used for symbology.",
+   "Fields with production suspended are shown with their base hydrocarbon symbol, not a post-production symbol.",
+   "Condensate fields that have ceased use the gas post-production symbol because no condensate version exists in the legend."
+  ]
+ },
+ "usage": [
+  {
+   "input_tokens": 1398,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 6796,
+   "output_tokens": 2234,
+   "thinking_tokens": 908
+  }
+ ],
+ "rounds": 1,
+ "unresolved": []
+}
