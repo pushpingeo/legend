@@ -3,6 +3,7 @@ import { liveMode, setUserKey, getUserKey, LimitReached } from "./claude.js";
 import { loadCatalogue, ensureImages, sslLayers, swatch } from "./ssl.js";
 import { nativeLayers } from "./native.js";
 import { profileLayer, askClaude, applyMapping } from "./mapping.js";
+import { ensureSwipe, showSwipe } from "./swipe.js";
 
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -57,8 +58,10 @@ function makeMap(region, view) {
   });
 }
 
-function popup(map, e) {
-  const ids = state.layers.filter((l) => l.map === map).flatMap((l) => (state.mode === "ssl" ? l.sslIds : l.nativeIds));
+function popup(map, e, overlay = false) {
+  const ids = overlay
+    ? state.layers.flatMap((l) => l.swipeIds || [])
+    : state.layers.filter((l) => l.map === map).flatMap((l) => (state.mode === "native" ? l.nativeIds : l.sslIds));
   const hits = map.queryRenderedFeatures([[e.point.x - 6, e.point.y - 6], [e.point.x + 6, e.point.y + 6]], { layers: ids.filter((id) => map.getLayer(id)) });
   if (!hits.length) return;
   const f = hits[0];
@@ -137,20 +140,32 @@ function beforeId(map, layer) {
 function applyMode() {
   for (const l of state.layers.filter((x) => x.map)) {
     for (const id of l.nativeIds || []) l.map.getLayer(id) && l.map.setLayoutProperty(id, "visibility", state.mode === "native" ? "visible" : "none");
-    for (const id of l.sslIds || []) l.map.getLayer(id) && l.map.setLayoutProperty(id, "visibility", state.mode === "ssl" ? "visible" : "none");
+    for (const id of l.sslIds || []) l.map.getLayer(id) && l.map.setLayoutProperty(id, "visibility", state.mode !== "native" ? "visible" : "none");
   }
   document.body.dataset.mode = state.mode;
   renderLegend();
+  syncSwipe();
+}
+
+// Swipe: the SSL underneath, each publisher's own styling on top, clipped at the divider.
+let swipeJob = Promise.resolve();
+function syncSwipe() {
+  swipeJob = swipeJob.then(async () => {
+    if (state.mode !== "swipe") return showSwipe(false);
+    for (const [region, map] of Object.entries(state.maps)) {
+      if (!map) continue;
+      const layers = [...state.layers.filter((l) => l.region === region)].sort((a, b) => THEME_ORDER.indexOf(a.meta.theme) - THEME_ORDER.indexOf(b.meta.theme));
+      await ensureSwipe(region, map, layers, { style: CONFIG.basemapStyle, onClick: (m, e) => popup(m, e, true) });
+    }
+    showSwipe(state.mode === "swipe");
+  }).catch((e) => console.warn("Swipe unavailable:", e));
 }
 
 // ---------- legend ----------
 
-function renderLegend() {
-  const box = $("#legend");
-  if (state.mode === "native") {
-    $("#legend-title").textContent = "Legend, as each publisher draws it";
-    const regions = [...new Set(state.layers.map((l) => l.region))];
-    box.innerHTML = regions
+function nativeLegendHTML() {
+  const regions = [...new Set(state.layers.map((l) => l.region))];
+  return regions
       .map((r) => {
         const ls = state.layers.filter((l) => l.region === r).sort((a, b) => THEME_ORDER.indexOf(b.meta.theme) - THEME_ORDER.indexOf(a.meta.theme));
         return `<div class="lg-region"><h3>${esc(REGION_LABEL[r])}</h3>${ls
@@ -158,9 +173,16 @@ function renderLegend() {
           .join("")}</div>`;
       })
       .join("");
+}
+
+function renderLegend() {
+  const box = $("#legend");
+  if (state.mode === "native") {
+    $("#legend-title").textContent = "Legend, as each publisher draws it";
+    box.innerHTML = nativeLegendHTML();
     return;
   }
-  $("#legend-title").textContent = "One legend for both maps";
+  $("#legend-title").textContent = state.mode === "swipe" ? "SSL legend (right of the divider)" : "One legend for both maps";
   const regions = [...new Set(state.layers.map((l) => l.region))];
   const byTheme = new Map();
   for (const l of state.layers) {
@@ -194,6 +216,7 @@ function renderLegend() {
         return `<h3>${esc(THEME_LABEL[theme] || theme)}</h3><table class="lg-table">${head}${rows}</table>`;
       })
       .join("");
+  if (state.mode === "swipe") box.innerHTML += `<details class="lg-native"><summary>As published, for comparison</summary>${nativeLegendHTML()}</details>`;
 }
 
 const sumv = (o) => Object.values(o).reduce((a, b) => a + b, 0);

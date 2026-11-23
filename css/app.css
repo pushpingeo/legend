@@ -133,3 +133,17 @@ dialog menu { display: flex; justify-content: flex-end; gap: 8px; padding: 0; ma
 .nomap { padding: 24px; color: var(--ink-2); max-width: 420px; }
 .status { max-width: 260px; overflow: hidden; text-overflow: ellipsis; }
 #run-all { margin-bottom: 10px; }
+
+/* swipe */
+.swipe-box { position: relative; }
+.swipe-top { position: absolute !important; inset: 0; height: auto !important; min-height: 0 !important; z-index: 1; display: none; }
+.swipe-handle { position: absolute; top: 0; bottom: 0; width: 28px; margin-left: -14px; z-index: 3; cursor: ew-resize; touch-action: none; display: none; }
+.swipe-handle::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 4px; background: #fff; box-shadow: 0 0 0 1px rgba(11, 57, 84, 0.35), 0 0 6px rgba(0, 0, 0, 0.25); }
+.swipe-handle .grip { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px; border-radius: 50%; background: var(--sea); color: #fff; font-size: 15px; line-height: 30px; text-align: center; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); }
+.swipe-handle:focus-visible .grip { outline: 2px solid #ffd43b; }
+.swipe-tag { position: absolute; top: 8px; z-index: 2; display: none; font-size: 11.5px; font-weight: 500; padding: 2px 8px; border-radius: 99px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); pointer-events: none; }
+.swipe-tag.l { left: 8px; }
+.swipe-tag.r { right: 48px; }
+.swipe-box.swiping .swipe-top, .swipe-box.swiping .swipe-handle, .swipe-box.swiping .swipe-tag { display: block; }
+.lg-native { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
+.lg-native summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); }
