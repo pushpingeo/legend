@@ -1,0 +1,1310 @@
+[
+ {
+  "id": "nsta_wells",
+  "region": "north_sea",
+  "theme": "wells",
+  "title": "Wellbores",
+  "publisher": "North Sea Transition Authority",
+  "url": "https://services-eu1.arcgis.com/OZMfUznmLTnWccBc/ArcGIS/rest/services/UKCS_offshore_wellbore_top_holes_(WGS84)/FeatureServer/0",
+  "fields": [
+   "WELLREGNO",
+   "COMPLESTAT",
+   "WELLOPSTAT",
+   "FLOWCLASS",
+   "OTHERCLASS",
+   "ORIGINTENT",
+   "DEVTYPE",
+   "FLUIDTYPES"
+  ],
+  "file": "data/nsta_wells.geojson",
+  "count": 13392,
+  "geometryType": "esriGeometryPoint",
+  "aliases": {
+   "WELLREGNO": "Well registration no.",
+   "ORIGINTENT": "Original wellbore intent",
+   "DEVTYPE": "Development wellbore type",
+   "COMPLESTAT": "Wellbore mechanical status",
+   "WELLOPSTAT": "Wellbore operational status",
+   "FLUIDTYPES": "Anticipated development wellbore type",
+   "FLOWCLASS": "Original hydrocarbon flow class",
+   "OTHERCLASS": "Other wellbore class"
+  },
+  "fieldTypes": {
+   "WELLREGNO": "esriFieldTypeString",
+   "ORIGINTENT": "esriFieldTypeString",
+   "DEVTYPE": "esriFieldTypeString",
+   "COMPLESTAT": "esriFieldTypeString",
+   "WELLOPSTAT": "esriFieldTypeString",
+   "FLUIDTYPES": "esriFieldTypeString",
+   "FLOWCLASS": "esriFieldTypeString",
+   "OTHERCLASS": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "COMPLESTAT",
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSMS",
+      "style": "esriSMSCircle",
+      "color": [
+       156,
+       156,
+       156,
+       255
+      ],
+      "size": 5,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0,
+      "outline": {
+       "color": [
+        0,
+        0,
+        0,
+        255
+       ],
+       "width": 0
+      }
+     },
+     "value": "Planned",
+     "label": "Planned"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "a0e5ff5a75d00208bbf03401e7cec2e2",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAb0lEQVQYlYWPwQmAMAxFX7EbuYLgJp1BT+JJV7BreBJcwTmcQiq/mIsV/KeQvOT/eH7krdgnAhAS1A4OIDY9MQMaJlgMFgQs28xpF7RdqEoMGXg2CqmfAXl+QeqbRZTnG7gcYwaUVoHkaV9o2HasNyVOIRHNhDESAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Drilling",
+     "label": "Drilling"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "e83c56d8b4e22e35522aeee14097a787",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAZklEQVQYlWNhIABY4Kx2vzQGRoY0BgYGYwYGhrMM/xlmMVRumgVRAJGciaTRGMzv8HkOUQDRiQUw1cOsABmLDRjDFJzFoegsRAHIQahugIJ/jRAFlZtmgRwEshPuC4Z/jQwVWzYDAFmkGaqp/q1hAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Completed (Operating)",
+     "label": "Completed (operating)"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "d366fcfbb72707f4935bf758dc3923b9",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAaElEQVQYlWNhIABY4Kx569MYGBjTGBgYjBkYGM4yMPyfxZAUOAuiACI5E0mjMZg/Z8NzqAlgnZiAiaEeZgXIWGzAGKbgLA5FZ6EK/s9CcwME/GNohChICpwFchDITrgv/jE0MqQEbAYACCQaIj38LigAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Completed (Shut In)",
+     "label": "Completed (shut In)"
+    },
+    {
+     "symbol": {
+      "type": "esriSMS",
+      "style": "esriSMSCircle",
+      "color": [
+       230,
+       152,
+       0,
+       255
+      ],
+      "size": 2,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0,
+      "outline": {
+       "color": [
+        255,
+        170,
+        0,
+        255
+       ],
+       "width": 0
+      }
+     },
+     "value": "Plugged",
+     "label": "Plugged"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "8c839edd83ad759e3aecb8f96339e511",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAJElEQVQImWPZa2C7mZGBwYeBgXEWC4QBAv/TWEAiIMZ/BsZGAIwrCAU5OYmUAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 2,
+      "height": 2,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Abandoned Phase 1",
+     "label": "Abandoned phase 1"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "3cff0da21985f18ada8d4375b62ad7ab",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKUlEQVQImWPZY2DbxsTAYPmPkXELC4jBwMDAwPT/vw8LSATE+M/AsBAAxPEL0jOx9rUAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 2,
+      "height": 2,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Abandoned Phase 2",
+     "label": "Abandoned phase 2"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "dbe5b5dd04d1004c8ce88d76e6fa0f0a",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAJUlEQVQImWPZZ2AX9Z+BQY3hH+NZFjADBJj+G7OAREAMJgamAwDahAqhWvaIbQAAAABJRU5ErkJggg==",
+      "contentType": "image/png",
+      "width": 2,
+      "height": 2,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "Abandoned Phase 3",
+     "label": "Abandoned phase 3"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        215,
+        240,
+        255
+       ],
+       "toColor": [
+        252,
+        215,
+        240,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        196,
+        252,
+        179,
+        255
+       ],
+       "toColor": [
+        196,
+        252,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        179,
+        246,
+        252,
+        255
+       ],
+       "toColor": [
+        179,
+        246,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        229,
+        187,
+        255
+       ],
+       "toColor": [
+        252,
+        229,
+        187,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        188,
+        179,
+        252,
+        255
+       ],
+       "toColor": [
+        188,
+        179,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        180,
+        179,
+        255
+       ],
+       "toColor": [
+        252,
+        180,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        251,
+        184,
+        252,
+        255
+       ],
+       "toColor": [
+        251,
+        184,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        192,
+        214,
+        252,
+        255
+       ],
+       "toColor": [
+        192,
+        214,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        189,
+        252,
+        221,
+        255
+       ],
+       "toColor": [
+        189,
+        252,
+        221,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        232,
+        252,
+        204,
+        255
+       ],
+       "toColor": [
+        232,
+        252,
+        204,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        222,
+        199,
+        252,
+        255
+       ],
+       "toColor": [
+        222,
+        199,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        222,
+        212,
+        255
+       ],
+       "toColor": [
+        252,
+        222,
+        212,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        215,
+        235,
+        252,
+        255
+       ],
+       "toColor": [
+        215,
+        235,
+        252,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "fetched": "2026-11-23"
+ },
+ {
+  "id": "nsta_fields",
+  "region": "north_sea",
+  "theme": "fields",
+  "title": "Hydrocarbon fields",
+  "publisher": "North Sea Transition Authority",
+  "url": "https://services-eu1.arcgis.com/OZMfUznmLTnWccBc/ArcGIS/rest/services/Offshore_hydrocarbon_fields_(WGS84)/FeatureServer/0",
+  "fields": [
+   "FIELDNAME",
+   "FIELDTYPE",
+   "STATUS",
+   "CURR_OPER"
+  ],
+  "file": "data/nsta_fields.geojson",
+  "count": 471,
+  "geometryType": "esriGeometryPolygon",
+  "aliases": {
+   "FIELDNAME": "Field Name",
+   "FIELDTYPE": "Field type",
+   "STATUS": "Status",
+   "CURR_OPER": "Current operator"
+  },
+  "fieldTypes": {
+   "FIELDNAME": "esriFieldTypeString",
+   "FIELDTYPE": "esriFieldTypeString",
+   "STATUS": "esriFieldTypeString",
+   "CURR_OPER": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "FIELDTYPE",
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       85,
+       255,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "OIL",
+     "label": "Oil"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "GAS",
+     "label": "Gas"
+    },
+    {
+     "symbol": {
+      "type": "esriSFS",
+      "style": "esriSFSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "outline": {
+       "type": "esriSLS",
+       "style": "esriSLSSolid",
+       "color": [
+        110,
+        110,
+        110,
+        255
+       ],
+       "width": 0.4
+      }
+     },
+     "value": "COND",
+     "label": "Condensate"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        182,
+        252,
+        203,
+        255
+       ],
+       "toColor": [
+        182,
+        252,
+        203,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        245,
+        179,
+        252,
+        255
+       ],
+       "toColor": [
+        245,
+        179,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        199,
+        179,
+        255
+       ],
+       "toColor": [
+        252,
+        199,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        184,
+        218,
+        252,
+        255
+       ],
+       "toColor": [
+        184,
+        218,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        250,
+        252,
+        179,
+        255
+       ],
+       "toColor": [
+        250,
+        252,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        215,
+        242,
+        255
+       ],
+       "toColor": [
+        252,
+        215,
+        242,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        194,
+        252,
+        251,
+        255
+       ],
+       "toColor": [
+        194,
+        252,
+        251,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        245,
+        210,
+        255
+       ],
+       "toColor": [
+        252,
+        245,
+        210,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        200,
+        189,
+        252,
+        255
+       ],
+       "toColor": [
+        200,
+        189,
+        252,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        182,
+        201,
+        255
+       ],
+       "toColor": [
+        252,
+        182,
+        201,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        226,
+        252,
+        212,
+        255
+       ],
+       "toColor": [
+        226,
+        252,
+        212,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        205,
+        252,
+        179,
+        255
+       ],
+       "toColor": [
+        205,
+        252,
+        179,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriCIELabAlgorithm",
+       "fromColor": [
+        252,
+        182,
+        230,
+        255
+       ],
+       "toColor": [
+        252,
+        182,
+        230,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "fetched": "2026-11-23"
+ },
+ {
+  "id": "nsta_pipelines",
+  "region": "north_sea",
+  "theme": "pipelines",
+  "title": "Pipelines and umbilicals",
+  "publisher": "North Sea Transition Authority",
+  "url": "https://services-eu1.arcgis.com/OZMfUznmLTnWccBc/ArcGIS/rest/services/UKCS_offshore_infrastructure_pipeline_linear_(WGS84)/FeatureServer/1",
+  "fields": [
+   "PIPE_NAME",
+   "INF_TYPE",
+   "FLUID",
+   "STATUS",
+   "EXPOSED",
+   "UNTRENCHED"
+  ],
+  "where": "INF_TYPE IN ('PIPELINE','UMBILICAL','RISER')",
+  "file": "data/nsta_pipelines.geojson",
+  "count": 6371,
+  "geometryType": "esriGeometryPolyline",
+  "aliases": {
+   "PIPE_NAME": "Pipeline name",
+   "INF_TYPE": "Type of infrastructure",
+   "FLUID": "Fluid",
+   "STATUS": "Status",
+   "UNTRENCHED": "Untrenched flag",
+   "EXPOSED": "Exposed flag"
+  },
+  "fieldTypes": {
+   "PIPE_NAME": "esriFieldTypeString",
+   "INF_TYPE": "esriFieldTypeString",
+   "FLUID": "esriFieldTypeString",
+   "STATUS": "esriFieldTypeString",
+   "UNTRENCHED": "esriFieldTypeString",
+   "EXPOSED": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "FLUID",
+   "defaultSymbol": {
+    "type": "esriSLS",
+    "style": "esriSLSSolid",
+    "color": [
+     156,
+     156,
+     156,
+     255
+    ],
+    "width": 1
+   },
+   "defaultLabel": "OTHER",
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "width": 1
+     },
+     "value": "CONDENSATE",
+     "label": "CONDENSATE"
+    },
+    {
+     "symbol": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       170,
+       0,
+       255
+      ],
+      "width": 1
+     },
+     "value": "MIXED HYDROCARBONS",
+     "label": "MIXED HYDROCARBONS"
+    },
+    {
+     "symbol": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       255,
+       0,
+       0,
+       255
+      ],
+      "width": 1
+     },
+     "value": "GAS",
+     "label": "GAS"
+    },
+    {
+     "symbol": {
+      "type": "esriSLS",
+      "style": "esriSLSSolid",
+      "color": [
+       85,
+       255,
+       0,
+       255
+      ],
+      "width": 1
+     },
+     "value": "OIL",
+     "label": "OIL"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriHSVAlgorithm",
+       "fromColor": [
+        56,
+        168,
+        0,
+        255
+       ],
+       "toColor": [
+        255,
+        255,
+        0,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriHSVAlgorithm",
+       "fromColor": [
+        255,
+        255,
+        0,
+        255
+       ],
+       "toColor": [
+        255,
+        0,
+        0,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "fetched": "2026-11-23"
+ },
+ {
+  "id": "nsta_platforms",
+  "region": "north_sea",
+  "theme": "platforms",
+  "title": "Surface installations",
+  "publisher": "North Sea Transition Authority",
+  "url": "https://services-eu1.arcgis.com/OZMfUznmLTnWccBc/ArcGIS/rest/services/UKCS offshore infrastructure surface points WGS84/FeatureServer/1",
+  "fields": [
+   "NAME",
+   "INF_TYPE",
+   "STATUS",
+   "REP_GROUP"
+  ],
+  "file": "data/nsta_platforms.geojson",
+  "count": 309,
+  "geometryType": "esriGeometryPoint",
+  "aliases": {
+   "NAME": "Infrastructure name",
+   "INF_TYPE": "Type of infrastructure",
+   "REP_GROUP": "Reporting group name",
+   "STATUS": "Status"
+  },
+  "fieldTypes": {
+   "NAME": "esriFieldTypeString",
+   "INF_TYPE": "esriFieldTypeString",
+   "REP_GROUP": "esriFieldTypeString",
+   "STATUS": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "uniqueValue",
+   "field1": "INF_TYPE",
+   "uniqueValueInfos": [
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "19fbd01996ff15d9b399c6c12d53e3c9",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAoUlEQVQYlWNhQAXGDAwMzxkYGJ7BBFjgUuYNaQzybg0MLGySDIdK0xme7J8FUyDF4DBxJoNqqA8DtyREcci+mQwXJvkyHMj3ZWHQSUtjMMjzQbOKASz29MhMFoYrszYzuMysx1Dw9TkDw+3Vs0BWnGW4tfo5g1oo1HwoeHoE5NizEEfeXr2ZQS00DUUBI8NmhC9ur25kuDILpAMBPr8EKwAAsYktzzxKrlAAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "ANCHOR BUOY",
+     "label": "ANCHOR BUOY"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "9da82482cc2c9a157dde4e5dd06f46dc",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAhUlEQVQYlWXPsRGCYBCE0Rcw9oBt2IMRhLSAmUbGYgmaQQt/SK4JKW3I2IUDCIy44d53t3uRX+3Q4TUZ0Twq5PYKG7Gzg6dqArZuSplE/IUfSnepkzSSyx0lqyiD1ygjlVrp8gf0TYKqj2gFnWwOGNUMSDuWDGqZfHWjXr4IrqphY9F7BD5mRB+ZxiUZlwAAAABJRU5ErkJggg==",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "BUOY",
+     "label": "BUOY"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "d72369bef69f6fd81a7cbee9aae0662f",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAgUlEQVQYlWNhgADjVZYMaTwsDFIgzu3PDAz5Fxh8QWwWkOQ2W4YGTwkGH6hiBk8JBgY9AYYzjgcYTFhAOpElYcBBlMG4QZthJgvMWGzATIhBCmQFXsACchDITmwAJMcCci3IQSA7kSUXPmQ4m3+BIR1sBci1qywZZqJ5M52BgeEZAP6oIKcCT48BAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "FLARE STACK",
+     "label": "FLARE STACK"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "8b9826520517abf9e6bf0168d8729282",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAeklEQVQImWNhQAXGUPosTIAFWXbVKoa0588ZpPLzGXyxKTBWUmJIs7FhYMjPB5sENgWuYOJEhgZjqAV9fQybi4oYpOAKGhoY0kJDGXxgigsLGSQ/fWJIa2hgmAVSIGVvz5AmKYnqWjc3hgaYAobXrxnOrl6NcDkS8AUAjXoeFsQnnrUAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 5,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "FMF",
+     "label": "FMF"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "bc5426c1bc66e20ce465119ea856ccd1",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAeElEQVQImWNhQAXGUPosTIAFRdp7VRrD1+dSDAfyfbEpMGbgV0pjkLJhYDiQDzIJbApCgcPEBgYxqA12fZsZDhVJIRSYN6QxqIb6wBUbFUoy/PyUxnCyYRZIgRSDrH0aA7ckqnPl3RpgChgYvr8+y3B7NdzlSMAXACZIHYrM/zilAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 5,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "FPSO",
+     "label": "FPSO"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "08f8093d6e88c7bfc909f7c1d8f882f8",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAf0lEQVQImWNhQAXGUPosTIAFWXaK76q011+fSzXuy/fFpsBYjl8pzVTahqFxXz7IJLApcAX1ThMbdMUhNtQ49G1uOVAkBVdQaNWQ5qUW6gNTnGxcKPn116e0/mMNs0AKpMxl7NPEuCVRXGuj4NYAU8Dw5vvrs1tvrYa7HAn4AgD05CdmjC2yxwAAAABJRU5ErkJggg==",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 5,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "FSO",
+     "label": "FSO"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "ddc9ddd51dce15d98753ca1dd1357d38",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAh0lEQVQYlV3PvRGCYBCE4Sdg7AHbsAcjCGnhM9PIWCxBs48WCMk1IaUNGbtw+J2RjW523rvdS/zrgB6fxUiWoSQcKXekV05vqgXYP4gFWTrDL+KT/EKeBMKZbBNl8FpiUtFEbltgKFJTDRFdTV+wJIxqJ6YbS9Y0BWFzpFm/qLlX08aq7wz8AHS/H5kiCc3+AAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "LOADING BUOY",
+     "label": "LOADING BUOY"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "57e18e0532c6c48d3e22ad0a832a60d1",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAq0lEQVQYlWNhQAXGDAwMzxkYGJ7BBFhgjEKrhjQbBbcGViY2ydZDpeknH+2fBVMgVe80caaXWqiPGLckWPGK0H0zF5yf5Nu4L9+XJUovLS3BMM8HzSoGkNiZJ0dmsiy7NGtzq+vMenQFr74+Z9h6a/UskBVnt91a/dxLLRRiPhSceXoE5NizYEduu7l6s5daaBqygv8MDJvhvth6a3Wj1eVZIB1w8PLbS7ACAKw7PMpxY3HaAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "MONITOR BUOY",
+     "label": "MONITOR BUOY"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "48651cbdf2ce8d66aab59c5bef8197b8",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAbklEQVQYlVWPQRGAMAwE94EJsAE2qolBBjrQgQ2wwWyawJBP2rtNeh34agJm4ALOEofsGnt26waaYAF7g3nNNQ3GEw6vApJh1ng4MOoJ+GZMVoWQRwED3a41hLX1pv5maL659LVlBleAQub7f/MBBUcZIVlqR5AAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "OTHER (SURFACE)",
+     "label": "OTHER (SURFACE)"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "d596a674a4d1e51e4ef3d667e4ab38b5",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAfElEQVQYlWNhgAHzhjQGSTNfMPtY3VmGV2caQEwWsEDAts0MCp4+cMUg9olGH4YTDSYsYJ3IkjBgUW/M8J8hjQVuLDbAKegLsQIXEFBlYAE7CJsVIPD81GYWsGtBDgLZiQwebN/CcLJhFsSKEw0mIAeB7AQZC9IJkgTJAQBI0Cd/Sz5lNgAAAABJRU5ErkJggg==",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "PLATFORM",
+     "label": "PLATFORM"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "8b9826520517abf9e6bf0168d8729282",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAeklEQVQImWNhQAXGUPosTIAFWXbVKoa0588ZpPLzGXyxKTBWUmJIs7FhYMjPB5sENgWuYOJEhgZjqAV9fQybi4oYpOAKGhoY0kJDGXxgigsLGSQ/fWJIa2hgmAVSIGVvz5AmKYnqWjc3hgaYAobXrxnOrl6NcDkS8AUAjXoeFsQnnrUAAAAASUVORK5CYII=",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 5,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "SBM",
+     "label": "SBM"
+    },
+    {
+     "symbol": {
+      "type": "esriPMS",
+      "url": "4c3f6a4ca0d50845bcf02b67342a9cf3",
+      "imageData": "iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAoklEQVQYlWNhQAXGDAwMzxkYGJ7BBFhgjIZQhjQ3fYYGNhYGydLFDOn7rzLMgimQmpjIMDPUgsFHUhCieF89w8xJ2xl88+cz+LKkuTCk5Xky+KBZxQASO3KDYSbLrD0Mm2emMdSjK3j+noFh9XGGWSArzq4+zvA81JJBElnBkRtgx54FO3L1CYbNoZYMaWiGbIb7YvVxhsZZumAdcPDyPUQBAPy0LVrvolXXAAAAAElFTkSuQmCC",
+      "contentType": "image/png",
+      "width": 6,
+      "height": 6,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0
+     },
+     "value": "SUSWELL BUOY",
+     "label": "SUSWELL BUOY"
+    },
+    {
+     "symbol": {
+      "type": "esriSMS",
+      "style": "esriSMSSquare",
+      "color": [
+       0,
+       0,
+       0,
+       255
+      ],
+      "size": 8,
+      "angle": 0,
+      "xoffset": 0,
+      "yoffset": 0,
+      "outline": null
+     },
+     "value": "TERMINAL",
+     "label": "TERMINAL"
+    }
+   ],
+   "fieldDelimiter": ",",
+   "authoringInfo": {
+    "colorRamp": {
+     "type": "multipart",
+     "colorRamps": [
+      {
+       "type": "algorithmic",
+       "algorithm": "esriHSVAlgorithm",
+       "fromColor": [
+        56,
+        168,
+        0,
+        255
+       ],
+       "toColor": [
+        255,
+        255,
+        0,
+        255
+       ]
+      },
+      {
+       "type": "algorithmic",
+       "algorithm": "esriHSVAlgorithm",
+       "fromColor": [
+        255,
+        255,
+        0,
+        255
+       ],
+       "toColor": [
+        255,
+        0,
+        0,
+        255
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "fetched": "2026-11-23"
+ },
+ {
+  "id": "boem_wells",
+  "region": "gulf",
+  "theme": "wells",
+  "title": "OCS wells",
+  "publisher": "Bureau of Ocean Energy Management",
+  "url": "https://services7.arcgis.com/G5Ma95RzqJRPKsWL/ArcGIS/rest/services/Outer_Continental_Shelf_Oil_and_Natural_Gas_Wells_Gulf_of_Mexico_Region_NAD_27/FeatureServer/0",
+  "fields": [
+   "WELL_NAME",
+   "STATUS",
+   "STATUS_DES",
+   "TYPE_CODE_"
+  ],
+  "file": "data/boem_wells.geojson",
+  "count": 37336,
+  "geometryType": "esriGeometryPoint",
+  "aliases": {
+   "WELL_NAME": "WELL_NAME",
+   "TYPE_CODE_": "TYPE_CODE_",
+   "STATUS": "STATUS",
+   "STATUS_DES": "STATUS_DES"
+  },
+  "fieldTypes": {
+   "WELL_NAME": "esriFieldTypeString",
+   "TYPE_CODE_": "esriFieldTypeString",
+   "STATUS": "esriFieldTypeString",
+   "STATUS_DES": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriPMS",
+    "url": "RedSphere.png",
+    "imageData": "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",
+    "contentType": "image/png",
+    "width": 15,
+    "height": 15
+   }
+  },
+  "fetched": "2026-11-23",
+  "where": "STATUS <> 'ST'"
+ },
+ {
+  "id": "boem_pipelines",
+  "region": "gulf",
+  "theme": "pipelines",
+  "title": "OCS pipelines",
+  "publisher": "Bureau of Ocean Energy Management (via Esri US Federal Data)",
+  "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Oil_And_Natural_Gas_Pipelines_Gulf_2024Q4/FeatureServer/0",
+  "fields": [
+   "SEGMENT_NUM",
+   "STATUS_CODE",
+   "PROD_CODE",
+   "PPL_SIZE_CODE",
+   "SDE_COMPANY_DESG"
+  ],
+  "where": "STATUS_CODE NOT IN ('REM','CNCL')",
+  "file": "data/boem_pipelines.geojson",
+  "count": 15877,
+  "geometryType": "esriGeometryPolyline",
+  "aliases": {
+   "SEGMENT_NUM": "Segment Number",
+   "STATUS_CODE": "Status Code",
+   "PPL_SIZE_CODE": "Pipe Size Code",
+   "PROD_CODE": "Product Code",
+   "SDE_COMPANY_DESG": "Company Name"
+  },
+  "fieldTypes": {
+   "SEGMENT_NUM": "esriFieldTypeInteger",
+   "STATUS_CODE": "esriFieldTypeString",
+   "PPL_SIZE_CODE": "esriFieldTypeString",
+   "PROD_CODE": "esriFieldTypeString",
+   "SDE_COMPANY_DESG": "esriFieldTypeString"
+  },
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSLS",
+    "style": "esriSLSSolid",
+    "color": [
+     163,
+     55,
+     130,
+     255
+    ],
+    "width": 1
+   }
+  },
+  "fetched": "2026-11-23"
+ },
+ {
+  "id": "boem_platforms",
+  "region": "gulf",
+  "theme": "platforms",
+  "title": "OCS platforms",
+  "publisher": "Bureau of Ocean Energy Management (via Esri US Federal Data)",
+  "url": "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/OCS_Oil_And_Natural_Gas_Platforms_Gulf_2024Q4/FeatureServer/0",
+  "fields": [
+   "COMPLEX_ID_NUM",
+   "INSTALL_DATE",
+   "REMOVAL_DATE"
+  ],
+  "file": "data/boem_platforms.geojson",
+  "count": 1280,
+  "geometryType": "esriGeometryPoint",
+  "aliases": {
+   "COMPLEX_ID_NUM": "Complex ID",
+   "INSTALL_DATE": "Installation Date",
+   "REMOVAL_DATE": "Removal Date"
+  },
+  "fieldTypes": {
+   "COMPLEX_ID_NUM": "esriFieldTypeInteger",
+   "INSTALL_DATE": "esriFieldTypeDate",
+   "REMOVAL_DATE": "esriFieldTypeDate"
+  },
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSMS",
+    "style": "esriSMSCircle",
+    "color": [
+     42,
+     147,
+     51,
+     255
+    ],
+    "size": 4,
+    "angle": 0,
+    "xoffset": 0,
+    "yoffset": 0,
+    "outline": {
+     "color": [
+      0,
+      0,
+      0,
+      255
+     ],
+     "width": 0.7
+    }
+   }
+  },
+  "fetched": "2026-11-23"
+ }
+]

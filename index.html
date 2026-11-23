@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>One legend · the Shell Standard Legend, applied by AI</title>
+  <meta name="description" content="Two regulators publish offshore wells, pipelines and platforms, each drawn their own way. Claude reads each service and applies the Shell Standard Legend, so both maps speak one cartographic language.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>One legend</h1>
+      <p>The UK and US regulators each draw their offshore data their own way. Claude reads both services and applies the <a href="#about">Shell Standard Legend</a>, so the two maps speak the same language.</p>
+    </div>
+    <div class="controls">
+      <span id="status" class="status">Loading…</span>
+      <button id="gear" class="icon" title="Use your own API key" aria-label="Settings">⚙</button>
+    </div>
+  </header>
+
+  <nav class="toolbar" aria-label="Map styling">
+    <div class="seg" role="radiogroup" aria-label="Styling">
+      <button data-mode="native" role="radio" aria-checked="false">As published</button>
+      <button data-mode="ssl" role="radio" aria-checked="true" class="on">Shell Standard Legend</button>
+    </div>
+    <div class="seg conv" role="radiogroup" aria-label="Colour convention" title="The SSL comes in two editions: oil=green (gas red) and oil=red (gas green)">
+      <button data-conv="green" role="radio" aria-checked="true" class="on"><i class="dot g"></i>oil = green</button>
+      <button data-conv="red" role="radio" aria-checked="false"><i class="dot r"></i>oil = red</button>
+    </div>
+    <label class="sync"><input type="checkbox" id="sync"> Match zoom</label>
+  </nav>
+
+  <main>
+    <section class="maps" id="maps">
+      <figure class="panel" id="panel-north_sea">
+        <figcaption><b>UK North Sea</b><span>North Sea Transition Authority</span></figcaption>
+        <div class="map" id="map-north_sea"></div>
+      </figure>
+      <figure class="panel" id="panel-gulf">
+        <figcaption><b>US Gulf</b><span>Bureau of Ocean Energy Management</span></figcaption>
+        <div class="map" id="map-gulf"></div>
+      </figure>
+      <figure class="panel hidden" id="panel-custom">
+        <figcaption><b id="custom-title">Your layer</b><span id="custom-pub"></span></figcaption>
+        <div class="map" id="map-custom"></div>
+      </figure>
+    </section>
+
+    <aside class="side">
+      <section class="card" id="legend-card">
+        <h2 id="legend-title">Legend</h2>
+        <div id="legend"></div>
+      </section>
+
+      <section class="card" id="try-card">
+        <h2>Apply it to another service</h2>
+        <p class="muted">Paste an ArcGIS feature layer URL. Claude reads its fields and values and decides which SSL symbol each feature gets.</p>
+        <form id="try">
+          <input id="try-url" type="url" inputmode="url" placeholder="https://…/FeatureServer/0" autocomplete="off" spellcheck="false">
+          <button type="submit" id="try-go">Map it</button>
+        </form>
+        <div class="chips" id="try-examples"></div>
+        <div id="try-log" class="log"></div>
+      </section>
+
+      <section class="card" id="mappings-card">
+        <h2>How each layer was mapped</h2>
+        <p class="muted" id="mappings-note"></p>
+        <div id="mappings"></div>
+      </section>
+
+      <section class="card" id="about">
+        <h2>What this is</h2>
+        <p>The <b>Shell Standard Legend</b> (SSL) is a century-old symbol standard for exploration maps, from Dr Erb's 1917 <i>Uniformity in Geological Reports</i> to the 2016 edition Shell released to industry through IOGP. It worked while drawing offices applied it by hand. Once data arrived faster than anyone could code it, it mostly stopped being used.</p>
+        <p>This page tests a different route. The legend is turned into data (codes, names and SVG symbols built from the SSL fonts), and Claude does the coding step: it reads a service's fields and values and writes a mapping from them to SSL codes, with a confidence and a reason for each. The map then draws from the mapping. Nothing about the source data changes.</p>
+        <p>Where a service doesn't hold something the SSL can show, the symbol says so. BOEM's well layer has status but no test results, so its wells show as plain circles while NSTA's show oil and gas.</p>
+        <p class="muted">Symbols: SSL2012 Esri style and fonts as released by Shell via IOGP, plus 2016 pipeline symbols and the suspended-well series built from the same glyphs. Data: NSTA and BOEM open data, fetched <span id="fetched"></span>. Built by <a href="https://github.com/pushpingeo">Rob Dunfey</a> with Claude. <a href="https://github.com/pushpingeo/legend">Source</a>.</p>
+      </section>
+    </aside>
+  </main>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <h3>Use your own Claude API key</h3>
+      <p class="muted">Optional. Without it, live mapping goes through the demo's shared proxy, which has a daily limit. Your key stays in this browser tab and is sent only to api.anthropic.com.</p>
+      <input id="key" type="password" placeholder="sk-ant-…" autocomplete="off">
+      <menu><button value="clear" class="ghost">Remove key</button><button value="save">Save</button></menu>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
