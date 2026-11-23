@@ -30,14 +30,22 @@ function setStatus() {
 // ---------- maps ----------
 
 function makeMap(region, view) {
-  const map = new maplibregl.Map({
+  let map;
+  try {
+    map = new maplibregl.Map({
     container: `map-${region}`,
     style: CONFIG.basemapStyle,
     center: view.center,
     zoom: view.zoom,
     attributionControl: { compact: true },
     cooperativeGestures: matchMedia("(pointer: coarse)").matches,
-  });
+    });
+  } catch (e) {
+    // No WebGL (some locked-down or headless browsers). Claude's mappings and the legend still work.
+    console.warn("Map unavailable:", e);
+    $(`#map-${region}`).innerHTML = `<p class="nomap">This browser can't draw the map (WebGL is off or unavailable). The legend and Claude's mappings below still work.</p>`;
+    return Promise.resolve(null);
+  }
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
   map.on("click", (e) => popup(map, e));
   state.maps[region] = map;
@@ -88,6 +96,9 @@ async function addLayer(layer) {
   const map = layer.map;
   layer.srcId = `src-${layer.meta.id}`;
   if (layer.mapping) layer.tally = applyMapping(state.cat, layer.mapping, layer.data.features);
+  layer.nativeIds = layer.nativeIds || [];
+  layer.sslIds = layer.sslIds || [];
+  if (!map) return applyMode();
   if (map.getSource(layer.srcId)) map.getSource(layer.srcId).setData(layer.data);
   else map.addSource(layer.srcId, { type: "geojson", data: layer.data });
 
@@ -102,6 +113,7 @@ async function addLayer(layer) {
 
 async function drawSSL(layer) {
   const map = layer.map;
+  if (!map) return;
   for (const id of layer.sslIds || []) if (map.getLayer(id)) map.removeLayer(id);
   layer.sslIds = [];
   if (!layer.tally) return;
@@ -123,7 +135,7 @@ function beforeId(map, layer) {
 }
 
 function applyMode() {
-  for (const l of state.layers) {
+  for (const l of state.layers.filter((x) => x.map)) {
     for (const id of l.nativeIds || []) l.map.getLayer(id) && l.map.setLayoutProperty(id, "visibility", state.mode === "native" ? "visible" : "none");
     for (const id of l.sslIds || []) l.map.getLayer(id) && l.map.setLayoutProperty(id, "visibility", state.mode === "ssl" ? "visible" : "none");
   }
@@ -263,7 +275,7 @@ async function remap(id) {
   try {
     const r = await runClaude(layer, (s) => btn && (btn.textContent = s));
     layer.tally = applyMapping(state.cat, layer.mapping, layer.data.features);
-    layer.map.getSource(layer.srcId).setData(layer.data);
+    layer.map?.getSource(layer.srcId)?.setData(layer.data);
     await drawSSL(layer);
     applyMode();
     renderMappings();
@@ -330,17 +342,21 @@ async function tryService(url) {
     // Replace any previous custom layer.
     const old = state.layers.find((l) => l.region === "custom");
     if (old) {
-      for (const id of [...old.nativeIds, ...old.sslIds]) old.map.getLayer(id) && old.map.removeLayer(id);
-      old.map.removeSource(old.srcId);
+      if (old.map) {
+        for (const id of [...old.nativeIds, ...old.sslIds]) old.map.getLayer(id) && old.map.removeLayer(id);
+        old.map.removeSource(old.srcId);
+      }
       state.layers = state.layers.filter((l) => l !== old);
     }
     $("#panel-custom").classList.remove("hidden");
     $("#custom-title").textContent = layerMeta.title;
     $("#custom-pub").textContent = layerMeta.publisher;
     if (!state.maps.custom) await makeMap("custom", { center: [0, 20], zoom: 1 });
-    const map = state.maps.custom;
-    map.resize();
-    fitTo(map, data.features);
+    const map = state.maps.custom || null;
+    if (map) {
+      map.resize();
+      fitTo(map, data.features);
+    }
     const layer = { meta: layerMeta, data, region: "custom", map, geometry: geomOf(meta.geometryType) };
     log("Claude is reading the layer…");
     const r = await runClaude(layer, log);
@@ -462,7 +478,7 @@ function wire() {
     };
   }
   let syncing = false;
-  const regions = () => Object.values(state.maps);
+  const regions = () => Object.values(state.maps).filter(Boolean);
   for (const m of regions()) {
     m.on("zoomend", () => {
       if (!$("#sync").checked || syncing) return;
@@ -499,6 +515,7 @@ function wire() {
 
 main().catch((e) => {
   console.error(e);
-  $("#status").textContent = "Something went wrong: " + e.message;
+  $("#status").textContent = "Something went wrong";
+  $("#status").title = e.message;
 });
 
