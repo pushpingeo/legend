@@ -2,7 +2,7 @@
 
 **Live: https://pushpingeo.github.io/legend/**
 
-The UK and US regulators publish their offshore wells, pipelines and platforms as open ArcGIS services. Each draws them its own way: NSTA colours wells by mechanical status, BOEM draws every well as the same red ball. This page puts the two side by side and lets Claude apply the **Shell Standard Legend** (SSL) to both. Flip the toggle and two very different maps become one map language, or choose **Swipe** and drag the divider to compare each publisher's own styling with the SSL on the same view.
+The UK and US regulators publish their offshore wells, pipelines and platforms as open ArcGIS services. Each draws them its own way: NSTA colours wells by mechanical status, BOEM draws every well as the same red ball. This page puts the two side by side and lets Claude apply the **Shell Standard Legend** (SSL) to both. Flip the toggle and two very different maps become one map language.
 
 The point: a symbol standard used to need a drawing office to apply it. Once data arrived faster than anyone could code it, the SSL mostly stopped being used. If an AI does the coding step, from whatever fields a service happens to have, the standard becomes usable again, on data nobody prepared for it.
 
@@ -48,7 +48,6 @@ index.html, css/, js/
   js/ssl.js        load the catalogue, draw SSL symbols in MapLibre, describe the SSL to Claude
   js/native.js     ArcGIS renderer -> MapLibre, for the "as published" view
   js/mapping.js    layer profile, the apply_ssl tool and prompt, validation, applying a mapping
-  js/swipe.js      swipe view: a second, camera-locked map drawn as published, clipped at a draggable divider
   js/app.js        maps, legend, mapping cards, "apply it to another service"
 ssl/green, ssl/red catalogue.json + svg/ (generated)
 data/              GeoJSON + layers.json with each service's own renderer (generated)
